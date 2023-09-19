@@ -7,4 +7,8 @@ class User < ApplicationRecord
     attribute :bio, :text
     attribute :post_counter, :integer, default: 0
     attribute :photo, :string
+
+    def recent_posts
+        posts.order(created_at: :desc).limit(3)
+    end
 end
