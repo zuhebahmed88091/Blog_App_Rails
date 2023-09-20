@@ -61,12 +61,12 @@ RSpec.describe Post, type: :model do
   describe '#recent_comments' do
     it 'returns the 5 most recent comments' do
       user = User.create(name: 'Ahmed')
-      comment1 = Comment.create(user: user, post: subject, text: 'comment 1', created_at: 5.day.ago)
-      comment2 = Comment.create(user: user, post: subject, text: 'comment 2', created_at: 4.day.ago)
-      comment3 = Comment.create(user: user, post: subject, text: 'comment 3', created_at: 3.day.ago)
-      comment4 = Comment.create(user: user, post: subject, text: 'comment 4', created_at: 2.day.ago)
-      comment5 = Comment.create(user: user, post: subject, text: 'comment 5', created_at: 1.day.ago)
-      comment6 = Comment.create(user: user, post: subject, text: 'comment 6', created_at: Time.now)
+      Comment.create(user:, post: subject, text: 'comment 1', created_at: 5.day.ago)
+      comment2 = Comment.create(user:, post: subject, text: 'comment 2', created_at: 4.day.ago)
+      comment3 = Comment.create(user:, post: subject, text: 'comment 3', created_at: 3.day.ago)
+      comment4 = Comment.create(user:, post: subject, text: 'comment 4', created_at: 2.day.ago)
+      comment5 = Comment.create(user:, post: subject, text: 'comment 5', created_at: 1.day.ago)
+      comment6 = Comment.create(user:, post: subject, text: 'comment 6', created_at: Time.now)
 
       recent_comments = subject.recent_comments
 

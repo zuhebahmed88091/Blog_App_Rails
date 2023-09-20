@@ -6,8 +6,8 @@ RSpec.describe Like, type: :model do
       user1 = User.create(name: 'Alice')
       user2 = User.create(name: 'Nohain')
       post = Post.create(title: 'Amazing Post', author: user1)
-      like1 = Like.create(user: user1, post: post)
-      like2 = Like.create(user: user2, post: post)
+      like1 = Like.create(user: user1, post:)
+      like2 = Like.create(user: user2, post:)
 
       like1.update_like_counter
       like2.update_like_counter

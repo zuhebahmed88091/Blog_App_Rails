@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
   describe '#three_most_recent_posts' do
     it 'should return three most recent posts' do
       user = User.create(name: 'Nahuel')
-      post1 = Post.create(title: 'Title1', author: user, created_at: 4.day.ago)
+      Post.create(title: 'Title1', author: user, created_at: 4.day.ago)
       post2 = Post.create(title: 'Title2', author: user, created_at: 3.day.ago)
       post3 = Post.create(title: 'Title3', author: user, created_at: 2.day.ago)
       post4 = Post.create(title: 'Title4', author: user, created_at: 1.day.ago)
