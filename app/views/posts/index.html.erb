@@ -1,23 +1,28 @@
 <div class="container">
-  <div class="card mb-3" style="max-width: 800px;">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src =<%= @user.photo %> class="img-fluid rounded" alt="Profile picture" style="height: 200px; width: 200px;">
+  <div class="row mb-3">
+    <div class="col-md-2">
+      <div class="card" style="max-width: 100px;">
+        <img src="<%= @user.photo %>" class="img-fluid rounded" alt="Profile picture" style="height: 100px; width: 100px;">
+      </div>
+    </div>
+  <div class="col-md-8">
+    <div class="card mb-3" style="max-width: 800px; height: 100px;">
+      <div class="row g-0">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to @user.name, user_path(@user), style: "text-decoration: none;" %></h5>
+          </div>
         </div>
-        <div class="col-md-4">
-            <div class="card-body">
-                <h5 class="card-title"><%= link_to @user.name, user_path(@user), style: "text-decoration: none;" %></h5>
-            </div>
-        </div>
-        <div class="col-md-4 d-flex align-items-center">
-            <div class="card-body">
-                <p class="card-text"><small class="text-muted">Number of posts: <%= @user.post_counter %></small></p>
-            </div>
-        </div>
+      <div class="col-md-4 d-flex align-items-center">
+          <div class="card-body">
+              <p class="card-text"><small class="text-muted">Number of posts: <%= @user.post_counter %></small></p>
+          </div>
+      </div>
     </div>
   </div>
+</div>
   <% @posts.each do |post| %>
-    <div class="card mb-3" style="max-width: 800px;">
+    <div class="card mb-3" style="max-width: 940px;">
       <div class="card-body text-success text-bg-light p-3">
         <a href = '<%= user_post_path(@user, post) %>'>
           <h5 class="card-title">Post #<%= @posts.index(post) + 1 %></h5>
@@ -32,7 +37,7 @@
   <% end %>
   <% @posts.each do |post| %>
     <% if post.comments.any? %>
-        <div class="card mb-3" style="max-width: 800px;">
+        <div class="card mb-3" style="max-width: 940px;">
             <div class="card-body text-success text-bg-light p-3">
                 <% post.comments.each do |comment|%>
                     <p class = "m-0"><strong><%= comment.user.name%></strong>: 
