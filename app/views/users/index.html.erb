@@ -1,13 +1,17 @@
 <div class="container">
     <% @users.each do |user| %>
-        <div class="card mb-3" style="max-width: 540px;">
+        <div class="card mb-3" style="max-width: 800px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src =<%= user.photo %> class="img-fluid rounded" alt="Profile picture">
+                    <img src =<%= user.photo %> class="img-fluid rounded" alt="Profile picture" style="height: 200px; width: 200px;">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-4">
                     <div class="card-body">
-                        <h5 class="card-title"><%= link_to user.name, user_path(user) %></h5>
+                        <h5 class="card-title"><%= link_to user.name, user_path(user), style: "text-decoration: none;" %></h5>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-center">
+                    <div class="card-body">
                         <p class="card-text"><small class="text-muted">Number of posts: <%= user.post_counter %></small></p>
                     </div>
                 </div>
