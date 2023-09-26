@@ -34,9 +34,12 @@
           <h5 class="card-title">Post #<%= @recent_posts.index(post) + 1 %></h5>
         </a>
         <p class="card-text"><%= post.text %></p>
-        <div class="card-text">
-          <span class="card-text">Comments: <%= post.comment_counter %></span>
-          <span class="card-text">Likes: <%= post.like_counter %></span>
+        <div class= "d-flex card-text">
+          <a href='<%= new_user_post_comment_path(user_id: post.author_id, post_id: post.id)%>'>
+            <span class="btn btn-primary">Comments</span>
+          </a>
+          <button class= "btn btn-light" disabled>
+            <%= post.comment_counter%></button>
         </div>
       </div>
     </div>
