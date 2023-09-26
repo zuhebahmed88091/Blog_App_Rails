@@ -1,0 +1,30 @@
+<%= form_for :post, url: user_posts_path(@user), html: { class: "form" } do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, class: "form-label custom-label" %>
+    <%= f.text_field :title, class: "form-control custom-input", style: "height: 40px; width: 300px;" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :text, class: "form-label custom-label" %>
+    <%= f.text_area :text, class: "form-control custom-input", style: "height: 120px; width: 300px;" %>
+  </div>
+  <%= f.submit "Create Post", class: "btn btn-primary mb-3" %>
+<% end %>
+
+
+
+<% if @post.present? %>
+  <div class="card mb-3" style="max-width: 800px;">
+    <div class="card-body text-success text-bg-light p-3">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h4><span class="card-title">Post #<%= @post.id %></span> <span>by <%= @post.author.name %></span></h4>
+        </div>
+        <div>
+          <span class="card-text">Comments: <%= @post.comment_counter %></span>
+          <span class="card-text">Likes: <%= @post.like_counter %></span>
+        </div>
+      </div>
+      <p class="card-text"><%= @post.text %></p>
+    </div>
+  </div>
+<% end %>

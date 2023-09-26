@@ -5,47 +5,54 @@
         <img src="<%= @user.photo %>" class="img-fluid rounded" alt="Profile picture" style="height: 100px; width: 100px;">
       </div>
     </div>
-  <div class="col-md-8">
-    <div class="card mb-3" style="max-width: 800px; height: 100px;">
-      <div class="row g-0">
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to @user.name, user_path(@user), style: "text-decoration: none;" %></h5>
+    <div class="col-md-8">
+      <div class="card mb-3" style="max-width: 800px; height: 100px;">
+        <div class="row g-0">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to @user.name, user_path(@user), style: "text-decoration: none;" %></h5>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex align-items-center">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">Number of posts: <%= @user.post_counter %></small></p>
+            </div>
           </div>
         </div>
-      <div class="col-md-4 d-flex align-items-center">
-          <div class="card-body">
-              <p class="card-text"><small class="text-muted">Number of posts: <%= @user.post_counter %></small></p>
-          </div>
       </div>
     </div>
   </div>
-</div>
+
   <% @posts.each do |post| %>
     <div class="card mb-3" style="max-width: 940px;">
       <div class="card-body text-success text-bg-light p-3">
-        <a href = '<%= user_post_path(@user, post) %>'>
+        <a href='<%= user_post_path(@user, post) %>'>
           <h5 class="card-title">Post #<%= @posts.index(post) + 1 %></h5>
         </a>
         <p class="card-text"><%= post.text %></p>
-        <div class="card-text">
-          <span class="card-text">Comments: <%= post.comment_counter %></span>
-          <span class="card-text">Likes: <%= post.like_counter %></span>
+        <div class= "d-flex card-text">
+          <a href='<%= new_user_post_comment_path(user_id: post.author_id, post_id: post.id)%>'>
+            <span class="btn btn-primary">Comments</span>
+          </a>
+          <button class= "btn btn-light" disabled>
+            <%= post.comment_counter%></button>
+            <%= form_for(post.likes.new, url: user_post_likes_path(post.author, post)) do |f| %>
+              <%= f.hidden_field :author_id, value: @current_user %>
+              <%= f.submit "Like:", class: "btn btn-light" %>
+            <% end %>
+            <button class= "btn btn-light" disabled><%= post.like_counter%></button>
         </div>
       </div>
-    </div>
-  <% end %>
-  <% @posts.each do |post| %>
-    <% if post.comments.any? %>
-        <div class="card mb-3" style="max-width: 940px;">
-            <div class="card-body text-success text-bg-light p-3">
-                <% post.comments.each do |comment|%>
-                    <p class = "m-0"><strong><%= comment.user.name%></strong>: 
-                        <%= comment.text%>
-                    </p>
-                <% end %>
-            </div>
+
+      <% if post.comments.any? %>
+        <div class="card-body text-bg-light p-3">
+          <h6 class="card-subtitle mb-2 text-muted">Comments:</h6>
+          <% post.comments.each do |comment| %>
+            <p class="card-text"><strong><%= comment.user.name %></strong>: <%= comment.text %></p>
+          <% end %>
         </div>
-    <% end %>
+      <% end %>
+
+    </div>
   <% end %>
 </div>
