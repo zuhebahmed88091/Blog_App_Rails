@@ -1,1 +1,49 @@
-<h1>The profile of individual user</h1>
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-2">
+      <div class="card" style="max-width: 100px;">
+        <img src="<%= @user.photo %>" class="img-fluid rounded" alt="Profile picture" style="height: 100px; width: 100px;">
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card mb-3" style="max-width: 800px; height: 100px;">
+        <div class="row g-0">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to @user.name, user_path(@user), style: "text-decoration: none;" %></h5>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex align-items-center">
+              <div class="card-body">
+                  <p class="card-text"><small class="text-muted">Number of posts: <%= @user.post_counter %></small></p>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="card mb-3" style="max-width: 940px;">
+    <div class="card-body text-success text-bg-light p-3">
+      <h5 class="card-title">Bio</h5>
+      <p class="card-text"><%= @user.bio%></p>
+    </div>
+  </div>
+  <% @recent_posts.each do |post| %>
+    <div class="card mb-3" style="max-width: 940px;">
+      <div class="card-body text-success">
+        <a href="<%= user_post_path(post.author.id, post.id) %>" style="text-decoration: none;">
+          <h5 class="card-title">Post #<%= @recent_posts.index(post) + 1 %></h5>
+        </a>
+        <p class="card-text"><%= post.text %></p>
+        <div class="card-text">
+          <span class="card-text">Comments: <%= post.comment_counter %></span>
+          <span class="card-text">Likes: <%= post.like_counter %></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="button" style="padding-left: 30%;">
+    <a href="<%= user_posts_path(@user) %>">
+      <button type="button" class="btn btn-outline-primary mb-2" disabled>See All Posts</button>
+    </a>
+  </div>
+</div>
