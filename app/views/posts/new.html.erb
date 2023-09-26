@@ -1,8 +1,16 @@
-<%= form_for :post, url: user_posts_path(@user) do |f| %>
-    Post Title: <%= f.text_field :title %><br />
-    Post Details: <%= f.text_area :text %><br />
-    <%= f.submit %>
+<%= form_for :post, url: user_posts_path(@user), html: { class: "form" } do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, class: "form-label custom-label" %>
+    <%= f.text_field :title, class: "form-control custom-input", style: "height: 40px; width: 300px;" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :text, class: "form-label custom-label" %>
+    <%= f.text_area :text, class: "form-control custom-input", style: "height: 120px; width: 300px;" %>
+  </div>
+  <%= f.submit "Create Post", class: "btn btn-primary mb-3" %>
 <% end %>
+
+
 
 <% if @post.present? %>
   <div class="card mb-3" style="max-width: 800px;">
