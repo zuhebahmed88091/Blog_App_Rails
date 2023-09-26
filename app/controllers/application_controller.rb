@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     private
 
     def set_current_user
-        user_id = params[:id]
+        user_id = params[:user_id]
         @current_user = User.find_by(id: user_id)
     end
 
