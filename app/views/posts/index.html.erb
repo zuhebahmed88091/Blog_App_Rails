@@ -47,7 +47,7 @@
       <% if post.comments.any? %>
         <div class="card-body text-bg-light p-3">
           <h6 class="card-subtitle mb-2 text-muted">Comments:</h6>
-          <% post.comments.each do |comment| %>
+          <% post.recent_comments.each do |comment| %>
             <p class="card-text"><strong><%= comment.user.name %></strong>: <%= comment.text %></p>
           <% end %>
         </div>
