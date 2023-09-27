@@ -13,10 +13,10 @@
       <p class="card-text"><%= @post.text %></p>
     </div>
   </div>
-  <% if @recent_comments.any? %>
+  <% if @post.comments.any? %>
     <div class="card mb-3" style="max-width: 800px;">
         <div class="card-body text-success text-bg-light p-3">
-            <% @recent_comments.each do |comment|%>
+            <% @post.comments.each do |comment|%>
                 <p class = "m-0"><strong><%= comment.user.name%></strong>: 
                     <%= comment.text%>
                 </p>
