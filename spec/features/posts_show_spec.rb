@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'capybara/rspec'
 
 RSpec.feature 'Post Show Page', type: :feature do
   let(:user) { User.create(name: 'Tom') }
