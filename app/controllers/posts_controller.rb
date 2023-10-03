@@ -9,9 +9,9 @@ class PostsController < ApplicationController
       .order(created_at: :desc)
       .offset((page - 1) * per_page)
       .limit(per_page)
-      
+
     total_posts = @user.posts.count
-    @total_pages = (total_posts.to_f / per_page).ceil  
+    @total_pages = (total_posts.to_f / per_page).ceil
   end
 
   def show
