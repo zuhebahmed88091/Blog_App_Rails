@@ -31,4 +31,9 @@ RSpec.feature 'Post Index', type: :feature do
     expect(page).to have_content('hello Tom', wait: 5)
     expect(current_path).to eq user_post_path(user, post)
   end
+
+  scenario 'see a section for pagination if there are more posts than fit on the view' do
+    visit user_posts_path(user)
+    expect(page).to have_selector('.pagination')
+  end
 end

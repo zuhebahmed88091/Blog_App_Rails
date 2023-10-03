@@ -56,4 +56,13 @@
 
     </div>
   <% end %>
+  <nav aria-label="Pagination for posts" class="mt-5">
+    <ul class="pagination justify-content-center">
+      <% (1..@total_pages).each do |page| %>
+        <li class="page-item <%= 'active' if params[:page].to_i == page %>">
+          <a class="page-link" href="<%= user_posts_path(@user, page: page) %>"><%= page %></a>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
 </div>
