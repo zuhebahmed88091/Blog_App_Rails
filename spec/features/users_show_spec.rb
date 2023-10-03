@@ -49,4 +49,19 @@ RSpec.feature 'User Show Page', type: :feature do
     expect(page).to have_content('Post title 3')
     expect(page).to have_content('Post Text 3')
   end
+
+  scenario "I can see a button that lets me view all of a user's posts" do
+    visit user_path(user)
+    expect(page).to have_link('See All Posts', href: user_posts_path(user))
+  end
+  scenario "When I click a user's post, it redirects me to that post's show page" do
+    visit user_path(user)
+    click_link 'Post title 1'
+    expect(page).to have_current_path(user_post_path(user, post1))
+  end
+  scenario "When I click to see all posts, it redirects me to the user's post's index page" do
+    visit user_path(user)
+    click_link 'See All Posts'
+    expect(page).to have_current_path(user_posts_path(user))
+  end
 end
