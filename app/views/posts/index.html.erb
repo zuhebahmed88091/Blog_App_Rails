@@ -25,22 +25,23 @@
 
   <% @posts.each do |post| %>
     <div class="card mb-3" style="max-width: 940px;">
-      <div class="card-body text-success text-bg-light p-3">
+      <div class="card-body text-success text-bg-light p-3 userP">
         <a href='<%= user_post_path(@user, post) %>'>
-          <h5 class="card-title">Post #<%= @posts.index(post) + 1 %></h5>
+          <h5 class="card-title">Post <%= @posts.index(post) + 1 %></h5>
         </a>
+        <p class="card-text">
+            <%= post.title %>
+        </p>
         <p class="card-text"><%= post.text %></p>
         <div class= "d-flex card-text">
           <a href='<%= new_user_post_comment_path(user_id: post.author_id, post_id: post.id)%>'>
-            <span class="btn btn-primary">Comments</span>
+            <span class="btn btn-primary">Comments: <%= post.comment_counter%></span>
           </a>
-          <button class= "btn btn-light" disabled>
-            <%= post.comment_counter%></button>
             <%= form_for(post.likes.new, url: user_post_likes_path(post.author, post)) do |f| %>
               <%= f.hidden_field :author_id, value: @current_user %>
               <%= f.submit "Like:", class: "btn btn-light" %>
             <% end %>
-            <button class= "btn btn-light" disabled><%= post.like_counter%></button>
+            <span class= "btn btn-light" disabled>Likes: <%= post.like_counter%></span>
         </div>
       </div>
 
@@ -55,4 +56,13 @@
 
     </div>
   <% end %>
+  <nav aria-label="Pagination for posts" class="mt-5">
+    <ul class="pagination justify-content-center">
+      <% (1..@total_pages).each do |page| %>
+        <li class="page-item <%= 'active' if params[:page].to_i == page %>">
+          <a class="page-link" href="<%= user_posts_path(@user, page: page) %>"><%= page %></a>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
 </div>
