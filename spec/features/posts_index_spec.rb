@@ -6,15 +6,15 @@ RSpec.feature 'Post Index', type: :feature do
 
   before do
     user.update(photo: 'https://www.kasandbox.org/programming-images/avatars/cs-hopper-cool.png')
-    Comment.create(user: user, post: post, text: 'hello Tom')
-    Comment.create(user: user, post: post, text: 'Thank You Tom')
-    Comment.create(user: user, post: post, text: 'Good afternoon Tom')
-    Like.create(user: user, post: post)
+    Comment.create(user:, post:, text: 'hello Tom')
+    Comment.create(user:, post:, text: 'Thank You Tom')
+    Comment.create(user:, post:, text: 'Good afternoon Tom')
+    Like.create(user:, post:)
   end
 
   scenario "I can see user's profile picture, username, number of posts, interactions, etc." do
     visit user_posts_path(user)
-    
+
     expect(page).to have_selector('img[src="https://www.kasandbox.org/programming-images/avatars/cs-hopper-cool.png"]')
     expect(page).to have_content('Tom')
     expect(page).to have_content('Number of posts: 1')
