@@ -36,6 +36,11 @@
         <a href="<%= user_post_path(post.author.id, post.id) %>" style="text-decoration: none;">
           <h5 class="card-title">Post #<%= @recent_posts.index(post) + 1 %></h5>
         </a>
+        <a href="<%= user_post_path(post.author.id, post.id) %>" style="text-decoration: none;">
+          <p class="card-text">
+            <%= post.title %>
+          </p>
+        </a>
         <p class="card-text"><%= post.text %></p>
         <div class= "d-flex card-text">
           <a href='<%= new_user_post_comment_path(user_id: post.author_id, post_id: post.id)%>'>
