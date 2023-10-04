@@ -14,10 +14,10 @@
  *= require_self
  */
 
- .alert,
- .notice {
-color: rgb(5, 196, 5);
+.alert,
+.notice {
+  color: rgb(5, 196, 5);
   font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
- }
+}
