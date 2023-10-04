@@ -75,4 +75,5 @@ group :test do
   gem 'rails-controller-testing'
 end
 
+gem 'cancancan'
 gem 'devise', '~> 4.9'

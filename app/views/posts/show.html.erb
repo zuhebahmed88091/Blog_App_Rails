@@ -14,15 +14,23 @@
         </div>
       </div>
       <p class="card-text"><%= @post.text %></p>
+      <% if @post.author.id == current_user.id || current_user.admin? %>
+        <%= button_to 'Delete Post', user_post_path(@post.author, @post), method: :delete, class: 'btn btn-danger' %>
+      <% end %>
     </div>
   </div>
   <% if @post.comments.any? %>
     <div class="card mb-3" style="max-width: 800px;">
         <div class="card-body text-success text-bg-light p-3 userC">
             <% @post.comments.each do |comment|%>
-                <p class = "m-0"><strong><%= comment.user.name%></strong>: 
-                    <%= comment.text%>
+              <div class="d-flex justfy-content">
+                <p class = "m-0 d-flex"><strong><%= comment.user.name%></strong>: 
+                  <%= comment.text%>
                 </p>
+                <% if can? :destroy, comment %>
+                  <%= button_to 'Delete', user_post_comment_path(@post.author, @post, comment), method: :delete, class: 'btn btn-light text-danger btn-sm'%>
+                <% end %>
+              </div>
             <% end %>
         </div>
     </div>

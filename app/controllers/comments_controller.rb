@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+  before_action :authenticate_user!
   def new
     @comment = Comment.new
     @post = Post.find(params[:post_id])
@@ -15,6 +17,19 @@ class CommentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @user = current_user
+    @comment = Comment.find(params[:id])
+
+    if @comment.user == @user
+      @comment.destroy
+      flash[:notice] = 'Comment is successfully deleted.'
+    else
+      flash[:alert] = 'You are not authorized to delete this comment.'
+    end
+    redirect_to user_post_path
   end
 
   private

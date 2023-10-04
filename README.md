@@ -94,6 +94,12 @@ Clone this repository to your desired folder:
 - Twitter: [&nbsp; &nbsp; @twitterhandle](https://twitter.com/ZuhebAhmed88091)
 - LinkedIn: [&nbsp; LinkedIn](https://www.linkedin.com/in/zuheb-ahmed/)
 
+👤 **Than Myo Htet**
+
+- GitHub: [@YoutLone](https://github.com/YoutLone)
+- LinkedIn: [than-myo-htet-618b2524b](https://linkedin.com/in/than-myo-htet-618b2524b)
+- Twitter: [ThanMyoHte64860](https://twitter.com/ThanMyoHte64860)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
