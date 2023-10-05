@@ -87,6 +87,31 @@ RSpec.describe 'api/my', type: :request do
     
           run_test!
         end
-    
+        patch 'Update user details' do
+          tags 'Users'
+          consumes 'application/json'
+          parameter name: 'id', in: :path, type: :string, required: true, description: 'User ID'
+          parameter name: :user, in: :body, schema: {
+            type: :object,
+            properties: {
+              name: { type: :string, description: 'User name' },
+              email: { type: :string, description: 'User email' },
+              bio: { type: :string, description: 'User bio' }
+            }
+          }
+          response '200', 'User details updated'
+          response '422', 'Invalid request'
+          let(:id) { 'user_id_here' }
+          let(:user) { { name: 'Updated Name', email: 'updated@example.com', bio: 'Updated bio info' } }
+          run_test!
+        end
+        delete 'Delete user' do
+          tags 'Users'
+          parameter name: 'id', in: :path, type: :string, required: true, description: 'User ID'
+          response '204', 'User deleted'
+          response '404', 'User not found'
+          let(:id) { 'user_id_here' }
+          run_test!
+        end
       end
 end
