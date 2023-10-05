@@ -11,9 +11,7 @@ Rails.application.routes.draw do
       resources :likes ,only:[:create]
     end
   end
-  # root 'users#index'
-  # Defines the root path route ("/")
-  # root "articles#index"
+  
   namespace :api do
     namespace :v1 do
       resources :users do
